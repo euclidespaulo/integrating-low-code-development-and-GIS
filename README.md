@@ -1,8 +1,6 @@
 # Internal Request Automation System
 
-This repository provides the configuration resources required to reproduce
-the automation workflow and analytical metrics described in the associated
-research publication.
+The system integrates ArcGIS Survey123, Power Automate, SharePoint, and Power BI to manage internal GIS service requests. Requests submitted through Survey123 trigger an automated workflow that records the request, routes notifications to responsible personnel, and updates monitoring dashboards.
 
 ---
 
