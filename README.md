@@ -163,7 +163,7 @@ TimeToMap =
 DATEDIFF(
 'InternalRequests'[Start Date],
 'InternalRequests'[End Date],
-HOUR
+DAY
 )
 ```
 
