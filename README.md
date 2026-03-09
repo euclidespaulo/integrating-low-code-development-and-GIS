@@ -30,15 +30,15 @@ The intake form is implemented using the XLSForm schema .
 
 | list_name | name | label | division | requester |
 |-----------|------|-------|----------|-----------|
-| division | construction | Construction Service |  |  |
+| division | Constructionservice | Construction Service |  |  |
 | division | engineering | Engineering |  |  |
 | division | governmental | Governmental |  |  |
-| division | ifr | IFR WWR |  |  |
+| division | IFRWWR | IFR WWR |  |  |
 | division | it | Information Technology |  |  |
 | division | tnd | Transmission & Distribution |  |  |
 | division | waterquality | Water Quality |  |  |
-| requester | requester_1 | Governmental | requester_1 |
-| requester | requester_2 | engineering | requester_2 |  
+| requester | requester_1 | Requester 2 |Governmental | requester_1 |
+| requester | requester_2 |Requester 2 |engineering | requester_2 |  
 
 ---
 
