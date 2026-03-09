@@ -16,42 +16,21 @@ research publication.
 
 ---
 
-## Repository Structure
-
-internal-request-automation/
-│
-├── forms
-│   └── survey123_xlsform.xlsx
-│
-├── automation
-│   ├── attachment_expression.txt
-│   ├── routing_expression.txt
-│   └── email_templates.md
-│
-├── analytics
-│   └── powerbi_measures.dax
-│
-├── sample_data
-│   └── internal_requests_sample.csv
-│
-└── README.md
-
----
-
-## Survey Configuration
+## Survey123 Configuration
 
 The intake form is implemented using the XLSForm schema.
 
 Example structure:
 
-type,name,label
-select_one division,department,Division
-select_one requester,requester,Requester
-select_one service,services,Service Type
-select_multiple assets,asset,Asset Category
-text,description,Description
-file,upload,Attachment
-select_one priority,priority,Priority Level
+| type | name | label |
+|------|------|------|
+| select_one division | department | Division |
+| select_one requester | requester | Requester |
+| select_one service | services | Service Type |
+| select_multiple assets | asset | Asset Category |
+| text | description | Description |
+| file | upload | Attachment |
+| select_one priority | priority | Priority Level |
 
 ---
 
