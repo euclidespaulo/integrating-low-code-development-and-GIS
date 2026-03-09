@@ -18,19 +18,18 @@ research publication.
 
 ## Survey123 Configuration
 
-The intake form is implemented using the XLSForm schema.
+The intake form is implemented using the XLSForm schema .
 
-Example structure:
-
-| type | name | label |
-|------|------|------|
-| select_one division | department | Division |
-| select_one requester | requester | Requester |
-| select_one service | services | Service Type |
-| select_multiple assets | asset | Asset Category |
-| text | description | Description |
-| file | upload | Attachment |
-| select_one priority | priority | Priority Level |
+### Tab: survey
+| type | name | label | required | choice_filter | notes |
+|-----|-----|-----|-----|-----|-----|
+| select_one division | department | Division | yes |  | Determines available requesters |
+| select_one requester | requester | Requester | yes | Division=${department} | Displays requesters belonging to the selected division |
+| select_one service | services | Service Type | no |  | Determines available asset categories |
+| select_multiple assets | asset | Asset Category | no | regex(Assets,${services}) | Displays assets associated with the selected service |
+| text | description | Description | yes |  | Multi-line request description |
+| file | upload | Attachment | no |  | Optional supporting files |
+| select_one priority | priority | Priority Level | yes |  | Indicates urgency level |
 
 ---
 
