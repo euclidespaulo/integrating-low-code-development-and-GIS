@@ -1,15 +1,5 @@
 # Internal Request Automation System
 
-This repository contains implementation artifacts for an automated
-internal service request management workflow.
-
-The system integrates:
-
-- ArcGIS Survey123 for request intake
-- Microsoft Power Automate for workflow orchestration
-- Microsoft SharePoint / Excel for request storage
-- Microsoft Power BI for operational analytics
-
 This repository provides the configuration resources required to reproduce
 the automation workflow and analytical metrics described in the associated
 research publication.
@@ -20,16 +10,35 @@ research publication.
 
 The intake form is implemented using the XLSForm schema .
 
-### Tab: survey
+## Survey Sheet
+
 | type | name | label | required | choice_filter | notes |
 |-----|-----|-----|-----|-----|-----|
-| select_one division | department | Division | yes |  | Determines available requesters |
+| begin_group | begin | Fill out the form | no |  | Form section start |
+| select_one division | department | Division | yes |  | Determines requester options |
 | select_one requester | requester | Requester | yes | Division=${department} | Displays requesters belonging to the selected division |
-| select_one service | services | Service Type | no |  | Determines available asset categories |
-| select_multiple assets | asset | Asset Category | no | regex(Assets,${services}) | Displays assets associated with the selected service |
-| text | description | Description | yes |  | Multi-line request description |
-| file | upload | Attachment | no |  | Optional supporting files |
-| select_one priority | priority | Priority Level | yes |  | Indicates urgency level |
+| hidden | email | Email | no |  | Automatically populated field |
+| select_one service | services | Services | yes |  | Determines available asset categories |
+| select_multiple assets | asset | Assets | yes | regex(Assets,${services}) | Displays assets associated with the selected service |
+| text | description | Description | yes |  | Required request description |
+| file | upload | Upload file | no |  | Optional supporting attachment |
+| select_one priority | priority | Priority Level | yes |  | Indicates request urgency |
+| date | reportdatetime | Date and time | no |  | Submission timestamp |
+| end_group | end |  | no |  | Form section end |
+
+## Choices Sheet 
+
+| list_name | name | label | division | requester |
+|-----------|------|-------|----------|-----------|
+| division | construction | Construction Service |  |  |
+| division | engineering | Engineering |  |  |
+| division | governmental | Governmental |  |  |
+| division | ifr | IFR WWR |  |  |
+| division | it | Information Technology |  |  |
+| division | tnd | Transmission & Distribution |  |  |
+| division | waterquality | Water Quality |  |  |
+| requester | requester_1 | Governmental | requester_1 |
+| requester | requester_2 | engineering | requester_2 |  
 
 ---
 
@@ -57,6 +66,8 @@ triggerOutputs()?['body/feature/attachments/upload']?[0]?['url'],
 
 outputs('EmailList')?[trim(body('Get_the_requester_name')?['Requester Name'])]
 
+EmailList compose stores JSON in the format: {"requestername":"email"}.
+The requester name must match the survey123 value to send the notification correctly.
 
 ---
 
@@ -128,27 +139,7 @@ FORMAT('InternalRequests'[Requested Date], "YYYY-MM")
 
 ---
 
-## Sample Dataset
-
-The repository includes a synthetic dataset that replicates the schema used
-by the system.
-
-Location:
-
-sample_data/internal_requests_sample.csv
-
-This dataset enables testing of the analytics workflow without exposing
-sensitive organizational data.
-
 ---
-
-## Reproducing the Workflow
-
-1. Deploy the XLSForm in ArcGIS Survey123.
-2. Configure the Excel repository in SharePoint.
-3. Import the workflow expressions into Power Automate.
-4. Connect the dataset to Power BI.
-5. Refresh the dashboard to generate operational metrics.
 
 ---
 
